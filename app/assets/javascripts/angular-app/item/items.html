@@ -1,0 +1,39 @@
+<div class="container">
+  <h3>
+    Items
+  </h3>
+
+  <div class="row" >
+    <div class="col-md-12">
+
+      <div class="pull-right" >
+          <button class="btn btn-primary" ng-click="" ><span class="fa fa-shopping-cart"></span> Cart</buttoan>
+        </div>
+    </div>
+  </div>
+  <br>
+
+  <table class="table table-bordered">
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in $ctrl.items">
+        <td>
+          {{item.name}}
+        </td>
+        <td>
+          {{item.unit_price}}
+        </td>
+        <td>
+
+          <button class="btn btn-default" ng-click=""><span class="fa fa-cart-plus"></span> Add to Cart</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
