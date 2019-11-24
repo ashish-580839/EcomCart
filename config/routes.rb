@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index]
 
-  resources :line_items, only: [:create, :destroy]
+  resources :line_items, only: [:create, :destroy] do
+    member do
+      put :update_quantity
+    end
+  end
 
   resources :carts, only: [:show]
 end

@@ -2,7 +2,8 @@ angular.module('cybrillaAssignment').factory ('LineItemService', ['$resource', f
   return $resource('/line_items/:id/:action',
     {id: '@id'}, {
     query: {isArray: false},
-    update: { method: "PUT"}
+    update: { method: "PUT"},
+    updateQuantity: { method: "PUT", params: {action: "update_quantity" } }
   });
 
 }]);

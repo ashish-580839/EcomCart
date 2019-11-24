@@ -9,7 +9,7 @@ class CreateLineItems < ActiveRecord::Migration[5.2]
       t.string :item_name, null: false
 
 
-
+      t.timestamps
     end
   end
 end

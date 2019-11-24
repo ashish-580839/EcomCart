@@ -1,7 +1,6 @@
 class Cart < ApplicationRecord
 
-  has_many :line_items, dependent: :destroy
-
+  has_many :line_items, -> {order(:created_at) }, dependent: :destroy
 
   def add_item(item)
     current_item = line_items.find_by(item_id: item.id)
@@ -18,7 +17,7 @@ class Cart < ApplicationRecord
   end
 
   def grand_total
-    @total_amount
+    total_amount - discount_amount
   end
 
 end

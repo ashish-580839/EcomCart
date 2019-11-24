@@ -22,9 +22,10 @@
   <table class="table table-bordered" ng-show="$ctrl.cart && $ctrl.cart.line_items.length">
     <thead>
       <th>Item</th>
-      <th>Unit Price</th>
+      <th>Unit Amount</th>
       <th>Quantity</th>
-      <th>Net Price</th>
+      <th>Discount</th>
+      <th>Net Amount</th>
       <th>Action</th>
     </thead>
     <tbody>
@@ -36,19 +37,24 @@
           {{line_item.unit_amount}}
         </td>
         <td>
-          {{line_item.quantity}}
+          <button class="btn btn-sm btn-default" ng-click="updateItemQuantity(line_item, line_item.quantity-1)"><span class="fa fa-minus"></span> </button>
+            {{line_item.quantity}}
+          <button class="btn btn-sm btn-default" ng-click="updateItemQuantity(line_item, line_item.quantity+1)"><span class="fa fa-plus"></span> </button>
+        </td>
+        <td>
+          {{line_item.discount_amount}}
         </td>
         <td>
           {{line_item.net_amount}}
         </td>
         <td>
 
-          <button class="btn btn-danger" ng-click="removeItemFromCart(line_item)"><span class="fa fa-trash"></span> Delete</button>
+          <button class="btn btn-danger" ng-click="removeItemFromCart(line_item)"><span class="fa fa-trash"></span></button>
 
         </td>
       </tr>
       <tr>
-        <td colspan="3" style="text-align: right">
+        <td colspan="4" style="text-align: right;font-weight: bold">
           Total Amount
         </td>
         <td >
@@ -59,18 +65,18 @@
         </td>
       </tr>
       <tr>
-        <td colspan="3" style="text-align: right">
+        <td colspan="4" style="text-align: right;font-weight: bold">
           Cart Discount
         </td>
         <td >
-          {{}}
+          {{$ctrl.cart.discount_amount}}
         </td>
         <td >
           &nbsp;
         </td>
       </tr>
       <tr>
-        <td colspan="3" style="text-align: right">
+        <td colspan="4" style="text-align: right;font-weight: bold">
           Grand Total
         </td>
         <td >

@@ -5,7 +5,7 @@ class LineItemsController < ApplicationController
 
   before_action :set_cart, only: [:create]
 
-  before_action :set_line_item, only: [:update, :destroy]
+  before_action :set_line_item, only: [:update_quantity, :destroy]
 
   def create
     item = Item.find(params[:line_item][:item_id])
@@ -17,6 +17,17 @@ class LineItemsController < ApplicationController
       render json: {errors: @line_item.errors.full_messages}, status: :unprocessable_entity
     end
   end
+
+  def update_quantity
+    quantity = params[:quantity].to_i
+    destroy and return if quantity == 0
+    if @line_item.update(quantity: quantity)
+      render json: @line_item, status: :ok
+    else
+      render json: {errors: @line_item.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
 
   def destroy
     if @line_item.destroy
@@ -34,6 +45,6 @@ class LineItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def line_item_params
-    params.permit(line_item: [:item_id])
+    params.permit(line_item: [:item_id, :quantity])
   end
 end
