@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   root "application#index"
 
   resources :items, only: [:index]
+
+  resources :line_items, only: [:create, :destroy]
+
+  resources :carts, only: [:show]
 end

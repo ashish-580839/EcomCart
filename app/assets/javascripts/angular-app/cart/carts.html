@@ -1,0 +1,86 @@
+<div class="container">
+  <h3>
+    Cart
+  </h3>
+
+  <div class="row" >
+    <div class="col-md-12">
+
+      <div class="pull-right" >
+          <a class="btn btn-primary" ui-sref="container.public.items" ><span class="fa fa-bars"></span> Item Catalogue</a>
+        </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="panel panel-default" ng-show="!$ctrl.cart || !$ctrl.cart.line_items.length">
+    <div class="text-center panel-body bg-warning">
+        <h4 class="text-warning"><i class="fa fa-info-circle"></i> Cart is empty!!</h4>
+    </div>
+  </div>
+
+  <table class="table table-bordered" ng-show="$ctrl.cart && $ctrl.cart.line_items.length">
+    <thead>
+      <th>Item</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Net Price</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="line_item in $ctrl.cart.line_items">
+        <td>
+          {{line_item.item_name}}
+        </td>
+        <td>
+          {{line_item.unit_amount}}
+        </td>
+        <td>
+          {{line_item.quantity}}
+        </td>
+        <td>
+          {{line_item.net_amount}}
+        </td>
+        <td>
+
+          <button class="btn btn-danger" ng-click="removeItemFromCart(line_item)"><span class="fa fa-trash"></span> Delete</button>
+
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: right">
+          Total Amount
+        </td>
+        <td >
+          {{$ctrl.cart.total_amount}}
+        </td>
+        <td >
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: right">
+          Cart Discount
+        </td>
+        <td >
+          {{}}
+        </td>
+        <td >
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="text-align: right">
+          Grand Total
+        </td>
+        <td >
+          {{$ctrl.cart.grand_total}}
+        </td>
+        <td >
+          &nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
