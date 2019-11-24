@@ -2,12 +2,12 @@ class Cart < ApplicationRecord
 
   has_many :line_items, -> {order(:created_at) }, dependent: :destroy
 
-  def add_item(item)
+  def add_item(item, quantity = 1)
     current_item = line_items.find_by(item_id: item.id)
     if current_item
-      current_item.quantity += 1
+      current_item.quantity += quantity
     else
-      current_item = line_items.build(item_id: item.id, unit_amount: item.unit_price, item_name: item.name)
+      current_item = line_items.build(item_id: item.id, unit_amount: item.unit_price, item_name: item.name, quantity: quantity)
     end
     current_item
   end
